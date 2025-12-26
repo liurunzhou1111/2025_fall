@@ -1,0 +1,146 @@
+2025-12-02 17:21:25,080 Sampling video data from image dataset (depends on num_frames, hz_factor, video_split_rate), this may take minutes...
+2025-12-02 17:21:25,080 For faster debugging, please use mini-version of nuscene.
+2025-12-02 17:22:32,709 Done sampling!
+2025-12-02 17:22:34,394 load from /mnt/home/yf2578/runzhouliu/DriveDreamer2/checkpoints/pretrained_models/drivedreamer2_wo_img/pytorch_gligen_weights.bin
+2025-12-02 17:22:40,835 Config:
+{'dataloaders': {'test': {'cam_num': 6,
+                          'data_or_config': '/mnt/home/yf2578/runzhouliu/DriveDreamer2/nuScenes-processed/v1.0-mini/cam_all_val/v0.0.2',
+                          'fps': 4,
+                          'frame_num': 8,
+                          'hz_factor': 3,
+                          'img_mask_num': 0,
+                          'img_mask_type': None,
+                          'is_multiview': True,
+                          'num_workers': 0,
+                          'shuffle': True,
+                          'transform': {'bd_input_name': 'image_box',
+                                        'box_normal': True,
+                                        'embed_map_path': '/mnt/home/yf2578/runzhouliu/DriveDreamer2/checkpoints/clip_text_transform_after_pool_panoramic.pkl',
+                                        'gd_input_name': 'image_hdmap',
+                                        'is_train': False,
+                                        'local_files_only': True,
+                                        'resolution': (256, 448),
+                                        'text_embed_dim': 1024,
+                                        'text_encoder_pretrained': 'cerspense/zeroscope_v2_576w'},
+                          'type': 'Video',
+                          'view': 'CAM_FRONT'},
+                 'train': {'cam_num': 6,
+                           'data_or_config': '/mnt/home/yf2578/runzhouliu/DriveDreamer2/nuScenes-processed/v1.0-mini/cam_all_train/v0.0.2',
+                           'frame_num': 8,
+                           'hz_factor': 3,
+                           'img_mask_num': 0,
+                           'img_mask_type': None,
+                           'is_multiview': True,
+                           'num_workers': 2,
+                           'resample': False,
+                           'shuffle': True,
+                           'transform': {'bd_input_name': 'image_box',
+                                         'box_normal': True,
+                                         'embed_map_path': '/mnt/home/yf2578/runzhouliu/DriveDreamer2/checkpoints/clip_text_transform_after_pool_panoramic.pkl',
+                                         'gd_input_name': 'image_hdmap',
+                                         'is_train': True,
+                                         'local_files_only': True,
+                                         'resolution': (256, 448),
+                                         'text_embed_dim': 1024,
+                                         'text_encoder_pretrained': 'cerspense/zeroscope_v2_576w',
+                                         'type': 'DriveDreamer2_Transform'},
+                           'type': 'Video',
+                           'view': 'CAM_FRONT'}},
+ 'launch': {'gpu_ids': [0]},
+ 'models': {'add_in_channels': 28,
+            'box_downsampler': {'in_dim': 19,
+                                'mid_dim': 32,
+                                'out_dim': 20,
+                                'type': 'GroundingDownSampler'},
+            'enable_gradient_checkpointing': False,
+            'grounding_downsampler': {'out_dim': 8,
+                                      'type': 'GroundingDownSampler'},
+            'local_files_only': False,
+            'mode': 'wo_img',
+            'num_inf_steps': 30,
+            'pipeline_name': 'DriveDreamer2Pipeline',
+            'pretrained': 'stabilityai/stable-video-diffusion-img2vid-xt-1-1',
+            'sample_scheduler': 'EulerDiscreteScheduler',
+            'text_encoder_pretrained': 'cerspense/zeroscope_v2_576w',
+            'train_temp': True,
+            'unet': {'addition_time_embed_dim': 256,
+                     'block_out_channels': (320, 640, 1280, 1280),
+                     'cross_attention_dim': 1024,
+                     'down_block_types': ('CrossAttnDownBlockSpatioTemporal',
+                                          'CrossAttnDownBlockSpatioTemporal',
+                                          'CrossAttnDownBlockSpatioTemporal',
+                                          'DownBlockSpatioTemporal'),
+                     'in_channels': 4,
+                     'layers_per_block': 2,
+                     'num_attention_heads': (5, 10, 20, 20),
+                     'out_channels': 4,
+                     'projection_class_embeddings_input_dim': 768,
+                     'sample_size': 96,
+                     'transformer_layers_per_block': 1,
+                     'type': 'UNetSpatioTemporalConditionModel',
+                     'up_block_types': ('UpBlockSpatioTemporal',
+                                        'CrossAttnUpBlockSpatioTemporal',
+                                        'CrossAttnUpBlockSpatioTemporal',
+                                        'CrossAttnUpBlockSpatioTemporal')},
+            'weight_path': '/mnt/home/yf2578/runzhouliu/DriveDreamer2/checkpoints/pretrained_models/drivedreamer2_wo_img/pytorch_gligen_weights.bin'},
+ 'optimizers': {'lr': 5e-05, 'type': 'AdamW', 'weight_decay': 0.0},
+ 'project_dir': '/mnt/home/yf2578/runzhouliu/DriveDreamer2/results/drivedreamer2_wo_img',
+ 'resume': False,
+ 'schedulers': {'name': 'constant', 'num_warmup_steps': 100},
+ 'test': {'frame_num': 8,
+          'max_guidance_scale': 5,
+          'min_guidance_scale': 2,
+          'mixed_precision': 'fp16',
+          'save_dir': '/mnt/home/yf2578/runzhouliu/DriveDreamer2/results/output/v1.0-trainval/drivedreamer2_wo_img/pedestrian_crossing_road'},
+ 'train': {'checkpoint_interval': 1,
+           'frame_num': 8,
+           'gradient_accumulation_steps': 1,
+           'log_interval': 100,
+           'log_with': 'tensorboard',
+           'max_epochs': 10,
+           'mixed_precision': 'fp16'}}
+2025-12-02 17:23:16,660 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:23:44,768 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:24:12,963 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:24:40,860 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:25:08,996 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:25:37,153 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:26:05,399 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:26:33,622 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:27:01,804 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:27:30,009 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:27:58,164 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:28:26,176 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:28:54,103 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:29:22,393 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:29:50,721 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:30:18,910 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:30:47,147 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:31:15,450 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:31:43,713 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:32:11,818 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:32:39,897 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:33:08,066 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:33:36,099 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:34:04,353 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:34:32,740 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:35:00,766 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:35:28,851 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:35:56,928 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:36:25,283 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:36:53,587 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:37:21,713 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:37:49,915 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:38:18,200 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:38:46,334 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:39:14,485 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:39:42,671 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:40:10,749 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:40:38,774 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:41:06,913 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:41:35,244 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:42:03,400 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:42:31,549 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:42:59,688 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:43:27,931 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+2025-12-02 17:43:55,954 IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2688, 772) to (2688, 784) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).

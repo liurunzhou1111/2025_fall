@@ -1,0 +1,3 @@
+2025-12-02 16:22:20,666 Sampling video data from image dataset (depends on num_frames, hz_factor, video_split_rate), this may take minutes...
+2025-12-02 16:22:20,666 For faster debugging, please use mini-version of nuscene.
+2025-12-02 16:23:30,959 Done sampling!
